@@ -59,8 +59,7 @@
 						    'container' 	  => 'nav',
 						    'container_class' => 'nav-collapse',
 						    'theme_location'  => 'primary',
-						    'depth'           => 4,
-						    'fallback_cb'     => 'concept_nomenu'
+						    'depth'           => 4
 					    )); ?>
 					</div>
 				</div>

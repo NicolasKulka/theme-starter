@@ -359,10 +359,4 @@ function theme_load_files($dir, $files, $prefix = '') {
 	}	
 }
 
-theme_load_files(dirname(__FILE__) . '/admin/'. array('admin', 'custom_post'));
-
-// Class widgets, shortcode et customization
-require (dirname(__FILE__) . '/admin/admin.php');
-require (dirname(__FILE__) . '/admin/custom_post.php');
-require (dirname(__FILE__) . '/admin/customisation.php');
-require (dirname(__FILE__) . '/admin/widgets/widgets.php');
+theme_load_files(dirname(__FILE__) . '/admin/', array('admin', 'custom_post', 'customization', 'widgets/widgets'));
