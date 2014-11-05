@@ -1,8 +1,5 @@
 <?php
 
-// Ajout de la constant de traduction
-define('TEXT_TRANSLATION_DOMAIN', 'theme');
-
 // Appel des scripts JS
 if (!function_exists('theme_enqueue_scripts')){
 	function theme_enqueue_scripts() {
@@ -31,14 +28,14 @@ if (!function_exists('theme_enqueue_styles')){
 // Ajout de l'enregistrement des menus et sidebar
 if (!function_exists('theme_setup')){
 	function theme_setup(){		
-		register_nav_menu('primary', __('Menu principal', TEXT_TRANSLATION_DOMAIN));
-		register_nav_menu('footer', __('Menu pied de page', TEXT_TRANSLATION_DOMAIN));
+		register_nav_menu('primary', __('Menu principal', 'theme'));
+		register_nav_menu('footer', __('Menu pied de page', 'theme'));
 		
 		//Register sidebars
 		register_sidebar(array(
-				'name'          => __('Barre horizontal', TEXT_TRANSLATION_DOMAIN),
+				'name'          => __('Barre horizontal', 'theme'),
 				'id'			=> 'barre-horizontal',
-				'description'   => __('', TEXT_TRANSLATION_DOMAIN),
+				'description'   => __('', 'theme'),
 				'before_widget' => '<div id="%1$s" class="widget wrapper clearfix %2$s">',
 				'after_widget'  => '</div>'
 		));
@@ -85,8 +82,8 @@ if(!function_exists('theme_posts_nav')) {
 			$links[] = $paged + 1;
 		}
 		
-		$current = '<span class="current btn_blue">%s</span>';
-		$linkTemplate = '<a class="btn_blue" href="%s">%s</a>';
+		$current = '<span class="current">%s</span>';
+		$linkTemplate = '<a href="%s">%s</a>';
 	
 		/**	Previous Post Link */
 		if ($extremes && get_previous_posts_link()) previous_posts_link();
@@ -160,8 +157,8 @@ if(!function_exists('theme_content_get_category_parents')) {
         $dataend = '</span>';
         $final = '<div id="breadcrumbs"><div class="container_12" xmlns:v="http://rdf.data-vocabulary.org/#">'; 
 
-        $startdefault = $data.'<a title="'. get_bloginfo('name') .'" href="'.home_url().'" rel="v:url" property="v:title">'.__('Accueil', TEXT_TRANSLATION_DOMAIN) .'</a>'.$dataend;
-        $starthome = __('Accueil de ',TEXT_TRANSLATION_DOMAIN). get_bloginfo('name');
+        $startdefault = $data.'<a title="'. get_bloginfo('name') .'" href="'.home_url().'" rel="v:url" property="v:title">'.__('Accueil', 'theme') .'</a>'.$dataend;
+        $starthome = __('Accueil de ','theme'). get_bloginfo('name');
 
         // Breadcrumb start
         if ( is_front_page() && is_home() ) {
@@ -176,10 +173,10 @@ if(!function_exists('theme_content_get_category_parents')) {
             //Blog page
             if ( $paged >= 1 ) {   
                 $url = get_page_link(get_option('page_for_posts'));  
-                $final .= $startdefault.$sep.$data.'<a href="'.$url.'" rel="v:url" property="v:title" title="'.__('Les articles', TEXT_TRANSLATION_DOMAIN).'">'.__('Les articles', TEXT_TRANSLATION_DOMAIN).'</a>'.$dataend;
+                $final .= $startdefault.$sep.$data.'<a href="'.$url.'" rel="v:url" property="v:title" title="'.__('Les articles', 'theme').'">'.__('Les articles', 'theme').'</a>'.$dataend;
             }
             else
-                $final .= $startdefault.$sep.__('Les articles', TEXT_TRANSLATION_DOMAIN);
+                $final .= $startdefault.$sep.__('Les articles', 'theme');
         } 
         else {
             //everyting else
@@ -232,7 +229,7 @@ if(!function_exists('theme_content_get_category_parents')) {
                 $permalink = get_permalink( $post->ID );
                 $title = $post->post_title;
                 $final .= $data."<a href='$permalink' rel='v:url' property='v:title' title='$title'>$title</a>".$dataend;
-                $final .= $sep.__('Commentaires page ', TEXT_TRANSLATION_DOMAIN).$cpage;
+                $final .= $sep.__('Commentaires page ', 'theme').$cpage;
             }
             else // Without Comments pages
                 $final .= the_title('','',FALSE);
@@ -250,7 +247,7 @@ if(!function_exists('theme_content_get_category_parents')) {
             if ($paged <= 1)
                 $final .= single_cat_title("", false);
             else
-                $final .= $data.'<a href="' . get_category_link( $category ) . '" title="'.__('Voir tous les articles de ', TEXT_TRANSLATION_DOMAIN).single_cat_title("", false).'" rel="v:url" property="v:title">'.single_cat_title("", false).'</a>'.$dataend;
+                $final .= $data.'<a href="' . get_category_link( $category ) . '" title="'.__('Voir tous les articles de ', 'theme').single_cat_title("", false).'" rel="v:url" property="v:title">'.single_cat_title("", false).'</a>'.$dataend;
         }
         elseif ( is_page() && !is_home() ) { // Page
             $post = $wp_query->get_queried_object();
@@ -284,13 +281,13 @@ if(!function_exists('theme_content_get_category_parents')) {
             else
                 $curauth = get_userdata(get_query_var('author'));
             
-            $final .= __('Articles de l\'auteur ', TEXT_TRANSLATION_DOMAIN).$curauth->nickname;
+            $final .= __('Articles de l\'auteur ', 'theme').$curauth->nickname;
         }  
         elseif ( is_tag() ) { // tags
-            $final .= __('Articles sur le th&egrave;me ', TEXT_TRANSLATION_DOMAIN).single_tag_title("",FALSE);
+            $final .= __('Articles sur le th&egrave;me ', 'theme').single_tag_title("",FALSE);
         }
         elseif ( is_search() ) { // Search
-            $final .= __('R&eacute;sultats de votre recherche sur ', TEXT_TRANSLATION_DOMAIN).'"'.get_search_query().'"';
+            $final .= __('R&eacute;sultats de votre recherche sur ', 'theme').'"'.get_search_query().'"';
         }    
         elseif ( is_date() ) { // Dates
             if ( is_day() ) {
@@ -298,18 +295,18 @@ if(!function_exists('theme_content_get_category_parents')) {
                 $final .= $data.'<a title="'.get_query_var("year").'" href="'.$year.'" rel="v:url" property="v:title">'.get_query_var("year").'</a>'.$dataend;
                 $month = get_month_link( get_query_var('year'), get_query_var('monthnum') );
                 $final .= $sep.$data.'<a title="'.single_month_title(' ',false).'" href="'.$month.'" rel="v:url" property="v:title">'.single_month_title(' ',false).'</a>'.$dataend;
-                $final .= $sep.__('Archives pour ', TEXT_TRANSLATION_DOMAIN).get_the_date();
+                $final .= $sep.__('Archives pour ', 'theme').get_the_date();
             }
             elseif ( is_month() ) {
                 $year = get_year_link('');
                 $final .= $data.'<a title="'.get_query_var("year").'" href="'.$year.'" rel="v:url" property="v:title">'.get_query_var("year").'</a>'.$dataend;
-                $final .= $sep.__('Archives pour ', TEXT_TRANSLATION_DOMAIN).single_month_title(' ',false);
+                $final .= $sep.__('Archives pour ', 'theme').single_month_title(' ',false);
             }
             elseif ( is_year() )
-                $final .= __('Archives pour ', TEXT_TRANSLATION_DOMAIN).get_query_var('year');
+                $final .= __('Archives pour ', 'theme').get_query_var('year');
         }
         elseif ( is_404()) // 404 page
-            $final .= __('404 Page non trouv&eacute;e', TEXT_TRANSLATION_DOMAIN);
+            $final .= __('404 Page non trouv&eacute;e', 'theme');
         elseif ( is_archive() ) { // Other Archives
             $posttype = get_post_type();
             $posttypeobject = get_post_type_object( $posttype );
@@ -350,7 +347,6 @@ function theme_wp_title( $title, $sep ) {
 }
 add_filter( 'wp_title', 'theme_wp_title', 10, 2 );
 
-// Function pour charger les uatres fichiers
 function theme_load_files($dir, $files, $prefix = '') {
 	foreach ($files as $file) {
 		if ( is_file($dir . $prefix . $file . ".php") ) {
@@ -358,5 +354,4 @@ function theme_load_files($dir, $files, $prefix = '') {
 		}
 	}	
 }
-
-theme_load_files(dirname(__FILE__) . '/admin/', array('admin', 'custom_post', 'customization', 'widgets/widgets'));
+theme_load_files(dirname(__FILE__) . '/admin/', array('admin', 'custom_post', 'customization', 'widgets/widgets', 'shortcodes'));

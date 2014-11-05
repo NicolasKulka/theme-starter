@@ -35,33 +35,22 @@
 	</head>
 
 	<body <?php body_class(); ?>>
-		<header class="main-header">
-			<div class="wrapper">
-				<div class="clearfix">
-					<div class="left">
-						<?php $heading_tag = (is_home() || is_front_page()) ? 'h1' : 'div'; ?>
-						<<?php echo $heading_tag ?>>
-						    <?php if (get_theme_mod("concept_logo")): ?>
-							<a href="<?php echo home_url('/'); ?>" title="<?php echo get_bloginfo('name'); ?>">
-								<img class="logo-website" src="<?php echo get_theme_mod("concept_logo"); ?>" alt="<?php echo esc_attr(get_bloginfo('title')); ?>" />
-							</a>
-						    <?php else: ?>
-							<a href="<?php echo home_url('/'); ?>" title="<?php echo get_bloginfo('name'); ?>" class="logotext">
-								<?php echo get_bloginfo('name'); ?>
-							</a>
-						    <?php endif; ?>
-					    </<?php echo $heading_tag ?>>
-					</div>
-					<div class="right clearfix">
-					    <?php
-					    wp_nav_menu(array( 
-						    'menu_class'	  => 'nav_principal clearfix',
-						    'container' 	  => 'nav',
-						    'container_class' => 'nav-collapse',
-						    'theme_location'  => 'primary',
-						    'depth'           => 4
-					    )); ?>
-					</div>
-				</div>
-			</div>
+		<header class="container_12">
+			<?php $heading_tag = (is_home() || is_front_page()) ? 'h1' : 'div'; ?>
+			<<?php echo $heading_tag ?>>
+			    <?php if (get_theme_mod("concept_logo")): ?>
+				<a href="<?php echo home_url('/'); ?>" title="<?php echo get_bloginfo('name'); ?>">
+					<img class="logo-website" src="<?php echo get_theme_mod("concept_logo"); ?>" alt="<?php echo esc_attr(get_bloginfo('title')); ?>" />
+				</a>
+			    <?php else: ?>
+				<a href="<?php echo home_url('/'); ?>" title="<?php echo get_bloginfo('name'); ?>" class="logotext">
+					<?php echo get_bloginfo('name'); ?>
+				</a>
+			    <?php endif; ?>
+		    </<?php echo $heading_tag ?>>
+		    <?php
+		    wp_nav_menu(array( 
+		        'container' 	  => 'nav',
+			    'theme_location'  => 'primary',
+		    )); ?>
 		</header>

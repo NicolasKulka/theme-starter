@@ -4,10 +4,9 @@ Theme Starter
 Included :
 
 * Grid 960 [(http://960.gs/)](http://960.gs/)
-* Simple JS for responsive menu
-* French translation
+* Ready to translate
 * Customizer ready
-* WordPress SEO breadcrumbs
+* WordPress SEO breadcrumbs if install
 
 ### 1.0
 * initial release
